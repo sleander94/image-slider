@@ -56,6 +56,10 @@ class ImageSlider {
     const circle = circles[circleIndex];
     circle.classList.toggle("activeCircle");
   }
+
+  slideshow(interval) {
+    setInterval(this.next.bind(this), interval);
+  }
 }
 
 const imageSlider = new ImageSlider(".frame", ".album", 800);
@@ -70,3 +74,5 @@ previousButton.addEventListener("click", () => {
 });
 
 imageSlider.addCircles(".circles");
+
+imageSlider.slideshow(5000);
