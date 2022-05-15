@@ -1,15 +1,17 @@
 class ImageSlider {
-  constructor(album) {
+  constructor(frame, album) {
+    this.frame = document.querySelector(frame);
     this.album = document.querySelector(album);
     this.images = this.album.querySelectorAll("img");
     this.album.style.position = "relative";
     this.album.style.right = "0px";
-    this.album.style.transition = "right .4s ease-in-out";
   }
 
   next() {
+    this.album.style.transition = "right .4s ease-in-out";
     let position = parseInt(this.album.style.right.split("px")[0]);
     if (position === 800 * (this.images.length - 1)) {
+      this.album.style.transition = "none";
       position = 0;
     } else {
       position += 800;
@@ -18,8 +20,10 @@ class ImageSlider {
   }
 
   previous() {
+    this.album.style.transition = "right .4s ease-in-out";
     let position = parseInt(this.album.style.right.split("px")[0]);
     if (position === 0) {
+      this.album.style.transition = "none";
       position = 800 * (this.images.length - 1);
     } else {
       position -= 800;
@@ -28,7 +32,7 @@ class ImageSlider {
   }
 }
 
-const imageSlider = new ImageSlider(".album");
+const imageSlider = new ImageSlider(".frame", ".album");
 
 const nextButton = document.querySelector(".next");
 nextButton.addEventListener("click", () => {
